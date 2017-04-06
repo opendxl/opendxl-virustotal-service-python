@@ -34,6 +34,7 @@ class VirusTotalApiRequestCallback(RequestCallback):
         """
         Validates that required parameters are present for the specified URL.
         If not, an appropriate exception is raised
+
         :param url: The URL
         :param req_dict: The request dictionary
         """
@@ -57,6 +58,7 @@ class VirusTotalApiRequestCallback(RequestCallback):
     def _is_get(url):
         """
         Returns whether to use HTTP GET or POST
+
         :param url: The URL
         :return: Whether to use HTTP GET or POST
         """
@@ -68,6 +70,7 @@ class VirusTotalApiRequestCallback(RequestCallback):
     def _get_http_error_message(code):
         """
         Returns an error message for the specified HTTP response code
+
         :param code: The HTTP response code
         :return: The error message for the response code
         """
