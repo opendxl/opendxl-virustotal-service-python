@@ -6,8 +6,6 @@
 The VirusTotal DXL Python service exposes access to the [VirusTotal API](https://www.virustotal.com/en/documentation/public-api/)
 via the [Data Exchange Layer](http://www.mcafee.com/us/solutions/data-exchange-layer.aspx) (DXL) fabric.
 
-The purpose of this service is to allow users to access the VirusTotal API via the DXL fabric.
-
 ## Documentation
 
 See the [Wiki](https://github.com/opendxl/opendxl-vtapi-service-python/wiki) for an overview of the
