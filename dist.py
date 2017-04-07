@@ -107,11 +107,11 @@ run_setup(SETUP_PY,
 
 print("\nCopying config into dist directory\n")
 copy_tree(os.path.join(DIST_PY_FILE_LOCATION, "config"), DIST_CONFIG_DIRECTORY)
-#remove_dist_files(DIST_CONFIG_DIRECTORY)
+remove_dist_files(DIST_CONFIG_DIRECTORY)
 
 print("\nCopying sample into dist directory\n")
 copy_tree(os.path.join(DIST_PY_FILE_LOCATION, "sample"), SAMPLE_RELEASE_DIR)
-#remove_dist_files(SAMPLE_RELEASE_DIR)
+remove_dist_files(SAMPLE_RELEASE_DIR)
 
 print("\nCopying dist to " + DIST_RELEASE_DIR + "\n")
 copy_tree(DIST_DIRECTORY, DIST_RELEASE_DIR)
