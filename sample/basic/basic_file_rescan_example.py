@@ -34,7 +34,9 @@ with DxlClient(config) as client:
     req = Request(request_topic)
     MessageUtils.dict_to_json_payload(req, {"resource": "7657fcb7d772448a6d8504e4b20168b8"})
     res = client.sync_request(req, timeout=30)
+
     if res.message_type is not Message.MESSAGE_TYPE_ERROR:
+        # Display results
         res_dict = MessageUtils.json_payload_to_dict(res)
         print MessageUtils.dict_to_json(res_dict, pretty_print=True)
     else:
