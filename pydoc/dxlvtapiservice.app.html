@@ -1,0 +1,257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>dxlvtapiservice.app module &#8212; VirusTotal API DXL Service 0.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="dxlvtapiservice.requesthandlers module" href="dxlvtapiservice.requesthandlers.html" />
+    <link rel="prev" title="dxlvtapiservice package" href="dxlvtapiservice.html" /> 
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dxlvtapiservice.requesthandlers.html" title="dxlvtapiservice.requesthandlers module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dxlvtapiservice.html" title="dxlvtapiservice package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VirusTotal API DXL Service 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="dxlvtapiservice.html" accesskey="U">dxlvtapiservice package</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-dxlvtapiservice.app">
+<span id="dxlvtapiservice-app-module"></span><h1>dxlvtapiservice.app module<a class="headerlink" href="#module-dxlvtapiservice.app" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="dxlvtapiservice.app.VirusTotalApiService">
+<em class="property">class </em><code class="descclassname">dxlvtapiservice.app.</code><code class="descname">VirusTotalApiService</code><span class="sig-paren">(</span><em>config_dir</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">dxlbootstrap.app.Application</span></code></p>
+<p>The &#8220;VirusTotal DXL&#8221; service class.</p>
+<p>Constructor parameters:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config_dir</strong> &#8211; The location of the configuration files for the
+application</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.GENERAL_API_KEY_CONFIG_PROP">
+<code class="descname">GENERAL_API_KEY_CONFIG_PROP</code><em class="property"> = 'apiKey'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.GENERAL_API_KEY_CONFIG_PROP" title="Permalink to this definition">¶</a></dt>
+<dd><p>The property used to specify the VirusTotal API Key in the application
+configuration file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.GENERAL_CONFIG_SECTION">
+<code class="descname">GENERAL_CONFIG_SECTION</code><em class="property"> = 'General'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.GENERAL_CONFIG_SECTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the &#8220;General&#8221; section within the application configuration file</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT">
+<code class="descname">REQ_TOPIC_DOMAIN_REPORT</code><em class="property"> = '/opendxl-virustotal/service/vtapi/domain/report'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8220;domain report&#8221; DXL request topic</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_FILE_REPORT">
+<code class="descname">REQ_TOPIC_FILE_REPORT</code><em class="property"> = '/opendxl-virustotal/service/vtapi/file/report'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_FILE_REPORT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8220;file report&#8221; DXL request topic</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_FILE_RESCAN">
+<code class="descname">REQ_TOPIC_FILE_RESCAN</code><em class="property"> = '/opendxl-virustotal/service/vtapi/file/rescan'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_FILE_RESCAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8220;file rescan&#8221; DXL request topic</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_IP_ADDRESS_REPORT">
+<code class="descname">REQ_TOPIC_IP_ADDRESS_REPORT</code><em class="property"> = '/opendxl-virustotal/service/vtapi/ip-address/report'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_IP_ADDRESS_REPORT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8220;ip address report&#8221; DXL request topic</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_URL_REPORT">
+<code class="descname">REQ_TOPIC_URL_REPORT</code><em class="property"> = '/opendxl-virustotal/service/vtapi/url/report'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_URL_REPORT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8220;url report&#8221; DXL request topic</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_URL_SCAN">
+<code class="descname">REQ_TOPIC_URL_SCAN</code><em class="property"> = '/opendxl-virustotal/service/vtapi/url/scan'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.REQ_TOPIC_URL_SCAN" title="Permalink to this definition">¶</a></dt>
+<dd><p>The &#8220;url scan&#8221; DXL request topic</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.SERVICE_TYPE">
+<code class="descname">SERVICE_TYPE</code><em class="property"> = '/opendxl-virustotal/service/vtapi'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.SERVICE_TYPE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The DXL service type for the VirusTotal API</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.SERVICE_TYPE_LENGTH">
+<code class="descname">SERVICE_TYPE_LENGTH</code><em class="property"> = 33</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.SERVICE_TYPE_LENGTH" title="Permalink to this definition">¶</a></dt>
+<dd><p>The length of the DXL service type string</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.VTAPI_URL_FORMAT">
+<code class="descname">VTAPI_URL_FORMAT</code><em class="property"> = 'https://www.virustotal.com/vtapi/v2{0}'</em><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.VTAPI_URL_FORMAT" title="Permalink to this definition">¶</a></dt>
+<dd><p>The URL format for VirusTotal API invocations</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.api_key">
+<code class="descname">api_key</code><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.api_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>The VirusTotal API key</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.client">
+<code class="descname">client</code><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.client" title="Permalink to this definition">¶</a></dt>
+<dd><p>The DXL client used by the application to communicate with the DXL
+fabric</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.config">
+<code class="descname">config</code><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The application configuration (as read from the &#8220;dxlvtapiservice.config&#8221; file)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.on_dxl_connect">
+<code class="descname">on_dxl_connect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.on_dxl_connect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after the client associated with the application has connected
+to the DXL fabric.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.on_load_configuration">
+<code class="descname">on_load_configuration</code><span class="sig-paren">(</span><em>config</em><span class="sig-paren">)</span><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.on_load_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked after the application-specific configuration has been loaded</p>
+<p>This callback provides the opportunity for the application to parse
+additional configuration properties.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>config</strong> &#8211; The application configuration</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.on_register_services">
+<code class="descname">on_register_services</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.on_register_services" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when services should be registered with the application</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="dxlvtapiservice.app.VirusTotalApiService.on_run">
+<code class="descname">on_run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dxlvtapiservice.app.VirusTotalApiService.on_run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invoked when the application has started running.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dxlvtapiservice.html"
+                        title="previous chapter">dxlvtapiservice package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="dxlvtapiservice.requesthandlers.html"
+                        title="next chapter">dxlvtapiservice.requesthandlers module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/dxlvtapiservice.app.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="dxlvtapiservice.requesthandlers.html" title="dxlvtapiservice.requesthandlers module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dxlvtapiservice.html" title="dxlvtapiservice package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">VirusTotal API DXL Service 0.0.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="dxlvtapiservice.html" >dxlvtapiservice package</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright Copyright 2017, McAfee LLC.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.3.
+    </div>
+  </body>
+</html>
