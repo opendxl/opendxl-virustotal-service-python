@@ -1,3 +1,7 @@
+# This sample invokes and displays the results of a VirusTotal "file rescan" via DXL.
+#
+# See: https://www.virustotal.com/en/documentation/public-api/#rescanning-files
+
 import os
 import sys
 
@@ -31,7 +35,8 @@ with DxlClient(config) as client:
     MessageUtils.dict_to_json_payload(req, {"resource": "7657fcb7d772448a6d8504e4b20168b8"})
     res = client.sync_request(req, timeout=30)
     if res.message_type is not Message.MESSAGE_TYPE_ERROR:
-        print "Response for file_rescan: '{0}'".format(MessageUtils.decode_payload(res))
+        res_dict = MessageUtils.json_payload_to_dict(res)
+        print MessageUtils.dict_to_json(res_dict, pretty_print=True)
     else:
         print "Error invoking service with topic '{0}': {1} ({2})".format(
             request_topic, res.error_message, res.error_code)

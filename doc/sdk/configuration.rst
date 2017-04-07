@@ -54,7 +54,7 @@ VirusTotal API DXL service (dxlvtapiservice.config)
         .. code-block:: python
 
             [General]
-            # The Virus Total API Key (required)
+            # The VirusTotal API Key (required)
             apiKey=-- YOUR API KEY --
 
     **General**

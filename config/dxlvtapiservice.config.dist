@@ -1,10 +1,10 @@
 ###############################################################################
-## Virus Total API DXL service library settings
+## VirusTotal API DXL service library settings
 ###############################################################################
 
 [General]
 
-# The Virus Total API Key (required)
+# The VirusTotal API Key (required)
 apiKey=
 
 ###############################################################################

@@ -1,3 +1,7 @@
+# This sample invokes and displays the results of a VirusTotal "file report" via DXL.
+#
+# See: https://www.virustotal.com/en/documentation/public-api/#getting-file-scans
+
 import os
 import sys
 

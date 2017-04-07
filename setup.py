@@ -29,7 +29,7 @@ dist = setup(
     license="Apache License 2.0",
 
     # Keywords
-    keywords=['opendxl', 'dxl', 'mcafee', 'service', 'virus total', 'vtapi'],
+    keywords=['opendxl', 'dxl', 'mcafee', 'service', 'virustotal', 'vtapi'],
 
     # Packages
     packages=[
