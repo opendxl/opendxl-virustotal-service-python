@@ -1,7 +1,10 @@
 Basic File Report Example
 =========================
 
-This sample invokes and displays the results of the "file report" remote via the VirusTotal API DXL service.
+This sample invokes and displays the results of a VirusTotal "file report" via DXL.
+
+For more information see:
+    https://www.virustotal.com/en/documentation/public-api/#getting-file-scans
 
 Prerequisites
 *************
