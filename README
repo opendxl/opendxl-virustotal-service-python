@@ -10,16 +10,16 @@ via the `Data Exchange Layer <http://www.mcafee.com/us/solutions/data-exchange-l
 Documentation
 -------------
 
-See the `GitHub Wiki <https://github.com/opendxl/opendxl-vtapi-service-python/wiki>`_ for an overview of the
+See the `GitHub Wiki <https://github.com/opendxl/opendxl-virustotal-service-python/wiki>`_ for an overview of the
 VirusTotal API DXL Python service and usage examples.
 
-See the `VirusTotal API DXL Python service documentation <https://opendxl.github.io/opendxl-vtapi-service-python/pydoc>`_ for
+See the `VirusTotal API DXL Python service documentation <https://opendxl.github.io/opendxl-virustotal-service-python/pydoc>`_ for
 installation instructions, API documentation, and usage examples.
 
 Bugs and Feedback
 -----------------
 
-For bugs, questions and discussions please use the `GitHub Issues <https://github.com/opendxl/opendxl-vtapi-service-python/issues>`_.
+For bugs, questions and discussions please use the `GitHub Issues <https://github.com/opendxl/opendxl-virustotal-service-python/issues>`_.
 
 LICENSE
 -------

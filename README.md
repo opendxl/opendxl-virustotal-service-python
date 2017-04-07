@@ -8,17 +8,17 @@ via the [Data Exchange Layer](http://www.mcafee.com/us/solutions/data-exchange-l
 
 ## Documentation
 
-See the [Wiki](https://github.com/opendxl/opendxl-vtapi-service-python/wiki) for an overview of the
+See the [Wiki](https://github.com/opendxl/opendxl-virustotal-service-python/wiki) for an overview of the
 VirusTotal API DXL Python service and usage examples.
 
-See the [VirusTotal API DXL Python service documentation](https://opendxl.github.io/opendxl-vtapi-service-python/pydoc) for
+See the [VirusTotal API DXL Python service documentation](https://opendxl.github.io/opendxl-virustotal-service-python/pydoc) for
 installation instructions, API documentation, and usage examples.
 
 ## Installation
 
 To start using the VirusTotal API DXL Python Service:
 
-* Download the [Latest Release](https://github.com/opendxl/opendxl-vtapi-service-python/releases/latest)
+* Download the [Latest Release](https://github.com/opendxl/opendxl-virustotal-service-python/releases/latest)
 * Extract the release .zip file
 * View the `README.html` file located at the root of the extracted files.
   * The `README` links to the documentation which includes installation instructions and usage examples.
@@ -28,11 +28,11 @@ To start using the VirusTotal API DXL Python Service:
 A pre-built Docker image can be used as an alternative to installing a Python environment with the
 modules required for the VirusTotal DXL service.
 
-See the [Docker Support Documentation](https://opendxl.github.io/opendxl-vtapi-service-python/pydoc/docker.html) for details.
+See the [Docker Support Documentation](https://opendxl.github.io/opendxl-virustotal-service-python/pydoc/docker.html) for details.
 
 ## Bugs and Feedback
 
-For bugs, questions and discussions please use the [GitHub Issues](https://github.com/opendxl/opendxl-vtapi-service-python/issues).
+For bugs, questions and discussions please use the [GitHub Issues](https://github.com/opendxl/opendxl-virustotal-service-python/issues).
 
 ## LICENSE
 
