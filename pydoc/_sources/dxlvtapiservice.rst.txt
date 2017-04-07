@@ -1,0 +1,18 @@
+dxlvtapiservice package
+=======================
+
+Submodules
+----------
+
+.. toctree::
+
+   dxlvtapiservice.app
+   dxlvtapiservice.requesthandlers
+
+Module contents
+---------------
+
+.. automodule:: dxlvtapiservice
+    :members:
+    :undoc-members:
+    :show-inheritance:

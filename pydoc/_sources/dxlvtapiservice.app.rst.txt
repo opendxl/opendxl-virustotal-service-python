@@ -1,0 +1,7 @@
+dxlvtapiservice.app module
+==========================
+
+.. automodule:: dxlvtapiservice.app
+    :members:
+    :undoc-members:
+    :show-inheritance:
