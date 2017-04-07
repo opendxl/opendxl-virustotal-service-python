@@ -5,7 +5,7 @@ A pre-built Docker image can be used as an alternative to installing a Python en
 libraries required for the VirusTotal API DXL service. Docker images for the VirusTotal API DXL service are posted to the
 following Docker repository:
 
-`<https://hub.docker.com/r/opendxl/opendxl-vtapi-service-python/>`_
+`<https://hub.docker.com/r/opendxl/opendxl-virustotal-service-python/>`_
 
 The remainder of this page walks through the steps required to configure the service,
 pull the image from the repository, and run the VirusTotal API DXL service via a Docker container.
@@ -35,13 +35,13 @@ Once you have logged into the host system, perform the following steps:
 
         The latest release of the service can be found at the following page:
 
-        `<https://github.com/opendxl/opendxl-vtapi-service-python/releases/latest>`_
+        `<https://github.com/opendxl/opendxl-virustotal-service-python/releases/latest>`_
 
         Download the latest configuration package (dxlvtapiservice-python-dist-config). For example:
 
         .. container:: note, admonition
 
-           wget ht\ tps://github.com/opendxl/opendxl-vtapi-service-python/releases/download/\ |version|\/dxlvtapiservice-python-dist-config-\ |version|\.zip
+           wget ht\ tps://github.com/opendxl/opendxl-virustotal-service-python/releases/download/\ |version|\/dxlvtapiservice-python-dist-config-\ |version|\.zip
 
     4.) Extract the configuration package
 
@@ -61,7 +61,7 @@ The next step is to `pull` the VirusTotal API DXL service image from the Docker 
 
 The image can be pulled using the following Docker command:
 
-    :literal:`docker pull opendxl/opendxl-vtapi-service-python:<release-version>`
+    :literal:`docker pull opendxl/opendxl-virustotal-service-python:<release-version>`
 
     The following parameters must be specified:
 
@@ -72,7 +72,7 @@ For example:
 
     .. container:: note, admonition
 
-        docker pull opendxl/opendxl-vtapi-service-python:\ |version|\
+        docker pull opendxl/opendxl-virustotal-service-python:\ |version|\
 
 Create Docker Container
 -----------------------
@@ -81,7 +81,7 @@ The final step is to create a Docker container based on the pulled image.
 
 The container can be created using the following Docker command:
 
-    :literal:`docker run -d --name dxlvtapiservice -v <host-config-dir>:/opt/dxlvtapiservice-config opendxl/opendxl-vtapi-service-python:<release-version>`
+    :literal:`docker run -d --name dxlvtapiservice -v <host-config-dir>:/opt/dxlvtapiservice-config opendxl/opendxl-virustotal-service-python:<release-version>`
 
     The following parameters must be specified:
 
@@ -94,7 +94,7 @@ For example:
 
     .. container:: note, admonition
 
-        docker run -d --name dxlvtapiservice -v /home/myuser/dxlvtapiservice-config:/opt/dxlvtapiservice-config opendxl/opendxl-vtapi-service-python:\ |version|\
+        docker run -d --name dxlvtapiservice -v /home/myuser/dxlvtapiservice-config:/opt/dxlvtapiservice-config opendxl/opendxl-virustotal-service-python:\ |version|\
 
 **Note:** A restart policy can be specified via the restart flag (``--restart <policy>``). This flag can be used to restart
 the container when the system reboots or if the service terminates abnormally. The ``unless-stopped`` policy will
