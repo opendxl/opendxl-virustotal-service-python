@@ -81,12 +81,11 @@ The majority of the sample code is shown below:
             # Invoke 'file report' method on service
             request_topic = "/opendxl-virustotal/service/vtapi/file/report"
             req = Request(request_topic)
-            MessageUtils.dict_to_json_payload(
-                req,
-                {"resource": "7657fcb7d772448a6d8504e4b20168b8"}
-            )
+            MessageUtils.dict_to_json_payload(req, {"resource": "7657fcb7d772448a6d8504e4b20168b8"})
             res = client.sync_request(req, timeout=30)
+
             if res.message_type is not Message.MESSAGE_TYPE_ERROR:
+                # Display results
                 res_dict = MessageUtils.json_payload_to_dict(res)
                 print MessageUtils.dict_to_json(res_dict, pretty_print=True)
             else:
@@ -94,11 +93,11 @@ The majority of the sample code is shown below:
                     request_topic, res.error_message, res.error_code)
 
 
-After connecting to the DXL fabric, a `request message` is created with a topic that targets the VirusTotal API DXL
-service.
+After connecting to the DXL fabric, a `request message` is created with a topic that targets the "file report" method
+of the VirusTotal API DXL service.
 
 The next step is to set the `payload` of the request message. The contents of the payload include the `resource`
-to report on.
+to report on (in this case, an MD5 hash).
 
 From the VirusTotal `retrieving file scan reports documentation <https://www.virustotal.com/en/documentation/public-api/#getting-file-scans>`_:
 

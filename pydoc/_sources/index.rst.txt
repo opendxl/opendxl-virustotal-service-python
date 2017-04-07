@@ -19,6 +19,30 @@ Installation and Configuration
 	configuration
 	running
 
+Service Methods
+---------------
+.. raw:: html
+
+    <span style="font-size:12px">(GitHub Wiki)</span>
+
+File
+
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#file-report>`_
+* `Rescan <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#file-rescan>`_
+
+URL
+
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#url-report>`_
+* `Scan <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#url-scan>`_
+
+IP Address
+
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#ip-address-report>`_
+
+Domain
+
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#domain-report>`_
+
 Docker
 ------
 
@@ -43,6 +67,7 @@ Basic
     :maxdepth: 1
 
     basicfilereportexample
+    basicdomainreportexample
 
 Python API
 ----------

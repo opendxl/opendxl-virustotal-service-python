@@ -26,7 +26,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="dxlvtapiservice package" href="dxlvtapiservice.html" />
+    <link rel="next" title="Basic Domain Report Example" href="basicdomainreportexample.html" />
     <link rel="prev" title="Samples Configuration" href="sampleconfig.html" /> 
   </head>
   <body role="document">
@@ -40,7 +40,7 @@
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="dxlvtapiservice.html" title="dxlvtapiservice package"
+          <a href="basicdomainreportexample.html" title="Basic Domain Report Example"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="sampleconfig.html" title="Samples Configuration"
@@ -134,12 +134,11 @@
     <span class="c1"># Invoke &#39;file report&#39; method on service</span>
     <span class="n">request_topic</span> <span class="o">=</span> <span class="s2">&quot;/opendxl-virustotal/service/vtapi/file/report&quot;</span>
     <span class="n">req</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">request_topic</span><span class="p">)</span>
-    <span class="n">MessageUtils</span><span class="o">.</span><span class="n">dict_to_json_payload</span><span class="p">(</span>
-        <span class="n">req</span><span class="p">,</span>
-        <span class="p">{</span><span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;7657fcb7d772448a6d8504e4b20168b8&quot;</span><span class="p">}</span>
-    <span class="p">)</span>
+    <span class="n">MessageUtils</span><span class="o">.</span><span class="n">dict_to_json_payload</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;resource&quot;</span><span class="p">:</span> <span class="s2">&quot;7657fcb7d772448a6d8504e4b20168b8&quot;</span><span class="p">})</span>
     <span class="n">res</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">sync_request</span><span class="p">(</span><span class="n">req</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
     <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">message_type</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">Message</span><span class="o">.</span><span class="n">MESSAGE_TYPE_ERROR</span><span class="p">:</span>
+        <span class="c1"># Display results</span>
         <span class="n">res_dict</span> <span class="o">=</span> <span class="n">MessageUtils</span><span class="o">.</span><span class="n">json_payload_to_dict</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
         <span class="k">print</span> <span class="n">MessageUtils</span><span class="o">.</span><span class="n">dict_to_json</span><span class="p">(</span><span class="n">res_dict</span><span class="p">,</span> <span class="n">pretty_print</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -148,10 +147,10 @@
 </pre></div>
 </div>
 </div></blockquote>
-<p>After connecting to the DXL fabric, a <cite>request message</cite> is created with a topic that targets the VirusTotal API DXL
-service.</p>
+<p>After connecting to the DXL fabric, a <cite>request message</cite> is created with a topic that targets the &#8220;file report&#8221; method
+of the VirusTotal API DXL service.</p>
 <p>The next step is to set the <cite>payload</cite> of the request message. The contents of the payload include the <cite>resource</cite>
-to report on.</p>
+to report on (in this case, an MD5 hash).</p>
 <p>From the VirusTotal <a class="reference external" href="https://www.virustotal.com/en/documentation/public-api/#getting-file-scans">retrieving file scan reports documentation</a>:</p>
 <blockquote>
 <div><cite>&#8220;A md5/sha1/sha256 hash will retrieve the most recent report on a given sample. You may also specify a scan_id
@@ -183,8 +182,8 @@ its contents are displayed.</p>
   <p class="topless"><a href="sampleconfig.html"
                         title="previous chapter">Samples Configuration</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="dxlvtapiservice.html"
-                        title="next chapter">dxlvtapiservice package</a></p>
+  <p class="topless"><a href="basicdomainreportexample.html"
+                        title="next chapter">Basic Domain Report Example</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -216,7 +215,7 @@ its contents are displayed.</p>
           <a href="py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="dxlvtapiservice.html" title="dxlvtapiservice package"
+          <a href="basicdomainreportexample.html" title="Basic Domain Report Example"
              >next</a> |</li>
         <li class="right" >
           <a href="sampleconfig.html" title="Samples Configuration"
