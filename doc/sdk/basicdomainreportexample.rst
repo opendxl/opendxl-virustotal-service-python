@@ -115,7 +115,7 @@ The majority of the sample code is shown below:
             MessageUtils.dict_to_json_payload(req, {"domain": "027.ru"})
             res = client.sync_request(req, timeout=30)
 
-            if res.message_type is not Message.MESSAGE_TYPE_ERROR:
+            if res.message_type != Message.MESSAGE_TYPE_ERROR:
                 # Display results
                 res_dict = MessageUtils.json_payload_to_dict(res)
                 print MessageUtils.dict_to_json(res_dict, pretty_print=True)

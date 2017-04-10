@@ -35,7 +35,7 @@ with DxlClient(config) as client:
     MessageUtils.dict_to_json_payload(req, {"ip": "90.156.201.27"})
     res = client.sync_request(req, timeout=30)
 
-    if res.message_type is not Message.MESSAGE_TYPE_ERROR:
+    if res.message_type != Message.MESSAGE_TYPE_ERROR:
         # Display results
         res_dict = MessageUtils.json_payload_to_dict(res)
         print MessageUtils.dict_to_json(res_dict, pretty_print=True)
