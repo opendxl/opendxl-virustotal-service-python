@@ -105,30 +105,14 @@ class VirusTotalApiRequestCallback(RequestCallback):
                 else:
                     raise Exception("VirusTotal error, HTTP response code: {0}".format(status_code))
 
-            # Read the VirusTotal response dictionary
-            vtapi_response_dict = vtapi_response.json()
+            # Create response
+            res = Response(request)
 
-            # Parse response from VirusTotal
-            if (type(vtapi_response_dict) is dict) and ("response_code" in vtapi_response_dict):
-                response_code = vtapi_response_dict["response_code"]
-                if response_code != 1:
-                    if "verbose_msg" in vtapi_response_dict:
-                        raise Exception("VirusTotal error: '{0}' {1}"
-                                        .format(vtapi_response_dict["verbose_msg"], response_code))
-                    else:
-                        raise Exception("VirusTotal error code: {0}".format(response_code))
+            # Set payload
+            MessageUtils.dict_to_json_payload(res, vtapi_response.json())
 
-                # Create response
-                res = Response(request)
-
-                # Set payload
-                MessageUtils.dict_to_json_payload(res, vtapi_response_dict)
-
-                # Send response
-                self._app.client.send_response(res)
-            else:
-                # Empty response
-                raise Exception("Empty response received from VirusTotal, are parameters correct?")
+            # Send response
+            self._app.client.send_response(res)
 
         except Exception as ex:
             logger.exception("Error handling request")
