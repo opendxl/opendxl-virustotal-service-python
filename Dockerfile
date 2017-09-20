@@ -4,9 +4,7 @@ FROM python:2.7-slim
 VOLUME ["/opt/dxlvtapiservice-config"]
 
 # Install required packages
-RUN pip install "requests"
-RUN pip install "dxlbootstrap"
-RUN pip install "dxlclient"
+RUN pip install "requests" "dxlbootstrap>=0.1.3" "dxlclient"
 
 # Copy service files
 COPY . /tmp/build

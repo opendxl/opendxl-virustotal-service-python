@@ -118,5 +118,5 @@ class VirusTotalApiRequestCallback(RequestCallback):
             logger.exception("Error handling request")
             err_message = str(ex)
             err_message = err_message.replace(self._app.api_key, "--api-key--")
-            err_res = ErrorResponse(request, MessageUtils.encode(err_message))
+            err_res = ErrorResponse(request, error_message=MessageUtils.encode(err_message))
             self._app.client.send_response(err_res)

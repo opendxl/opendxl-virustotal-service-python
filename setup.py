@@ -1,3 +1,5 @@
+import os
+
 from setuptools import setup
 import distutils.command.sdist
 
@@ -6,19 +8,22 @@ import setuptools.command.sdist
 # Patch setuptools' sdist behaviour with distutils' sdist behaviour
 setuptools.command.sdist.sdist.run = distutils.command.sdist.sdist.run
 
-VERSION = __import__('dxlvtapiservice').get_version()
+version_info = {}
+cwd=os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(cwd, "dxlvtapiservice", "_version.py")) as f:
+    exec(f.read(), version_info)
 
 dist = setup(
     # Package name:
     name="dxlvtapiservice",
 
     # Version number:
-    version=VERSION,
+    version=version_info["__version__"],
 
     # Requirements
     install_requires=[
         "requests",
-        "dxlbootstrap",
+        "dxlbootstrap>=0.1.3",
         "dxlclient"
     ],
 
@@ -34,7 +39,13 @@ dist = setup(
     # Packages
     packages=[
         "dxlvtapiservice",
-    ],
+        "dxlvtapiservice._config",
+        "dxlvtapiservice._config.sample",
+        "dxlvtapiservice._config.app"],
+
+    package_data={
+        "dxlvtapiservice._config.sample" : ['*'],
+        "dxlvtapiservice._config.app" : ['*']},
 
     # Details
     url="http://www.mcafee.com/",
