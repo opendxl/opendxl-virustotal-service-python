@@ -27,21 +27,21 @@ Service Methods
 
 File
 
-* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#file-report>`_
-* `Rescan <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#file-rescan>`_
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#file-report>`__
+* `Rescan <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#file-rescan>`__
 
 URL
 
-* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#url-report>`_
-* `Scan <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#url-scan>`_
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#url-report>`__
+* `Scan <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#url-scan>`__
 
 IP Address
 
-* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#ip-address-report>`_
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#ip-address-report>`__
 
 Domain
 
-* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#domain-report>`_
+* `Report <https://github.com/opendxl/opendxl-virustotal-service-python/wiki/Service-Methods#domain-report>`__
 
 Docker
 ------
