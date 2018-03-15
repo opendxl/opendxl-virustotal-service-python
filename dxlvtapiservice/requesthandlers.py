@@ -6,7 +6,6 @@ from dxlclient.callbacks import RequestCallback
 from dxlclient.message import Response, ErrorResponse
 from dxlbootstrap.util import MessageUtils
 
-
 # Configure local logger
 logger = logging.getLogger(__name__)
 
@@ -53,7 +52,8 @@ class VirusTotalApiRequestCallback(RequestCallback):
         if self._required_params:
             for param in self._required_params:
                 if param not in req_dict:
-                    raise Exception("Required parameter not specified: '{0}'".format(param))
+                    raise Exception(
+                        "Required parameter not specified: '{0}'".format(param))
 
     @staticmethod
     def _get_http_error_message(code):
@@ -63,10 +63,7 @@ class VirusTotalApiRequestCallback(RequestCallback):
         :param code: The HTTP response code
         :return: The error message for the response code
         """
-        if code is 204:
-            return "VirusTotal API request rate limit exceeded."
-        else:
-            return None
+        return "VirusTotal API request rate limit exceeded." if code == 204 else None
 
     def on_request(self, request):
         """
@@ -75,8 +72,10 @@ class VirusTotalApiRequestCallback(RequestCallback):
         :param request: The request message
         """
         # Handle request
-        logger.info("Request received on topic: '{0}' with payload: '{1}'".format(
-            request.destination_topic, MessageUtils.decode_payload(request)))
+        logger.info(
+            "Request received on topic: '%s' with payload: '%s'",
+            request.destination_topic,
+            MessageUtils.decode_payload(request))
 
         try:
             # API URL
@@ -92,9 +91,11 @@ class VirusTotalApiRequestCallback(RequestCallback):
 
             # Invoke VirusTotal API
             if self._is_get:
-                vtapi_response = requests.get(api_url, params=params, headers=self._headers)
+                vtapi_response = requests.get(api_url, params=params,
+                                              headers=self._headers)
             else:
-                vtapi_response = requests.post(api_url, params=params, headers=self._headers)
+                vtapi_response = requests.post(api_url, params=params,
+                                               headers=self._headers)
 
             # Check HTTP response code
             status_code = vtapi_response.status_code
@@ -102,9 +103,13 @@ class VirusTotalApiRequestCallback(RequestCallback):
                 vtapi_response.raise_for_status()
                 http_message = self._get_http_error_message(status_code)
                 if http_message:
-                    raise Exception("VirusTotal error, {0} ({1})".format(http_message, str(status_code)))
+                    raise Exception(
+                        "VirusTotal error, {0} ({1})".format(http_message,
+                                                             str(status_code)))
                 else:
-                    raise Exception("VirusTotal error, HTTP response code: {0}".format(status_code))
+                    raise Exception(
+                        "VirusTotal error, HTTP response code: {0}".format(
+                            status_code))
 
             # Create response
             res = Response(request)
@@ -119,5 +124,6 @@ class VirusTotalApiRequestCallback(RequestCallback):
             logger.exception("Error handling request")
             err_message = str(ex)
             err_message = err_message.replace(self._app.api_key, "--api-key--")
-            err_res = ErrorResponse(request, error_message=MessageUtils.encode(err_message))
+            err_res = ErrorResponse(request, error_message=MessageUtils.encode(
+                err_message))
             self._app.client.send_response(err_res)
