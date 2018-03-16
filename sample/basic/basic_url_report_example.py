@@ -9,7 +9,7 @@ import sys
 
 from dxlclient.client_config import DxlClientConfig
 from dxlclient.client import DxlClient
-from dxlclient.message import Message, Event, Request
+from dxlclient.message import Message, Request
 from dxlbootstrap.util import MessageUtils
 
 # Import common logging and configuration
