@@ -63,3 +63,4 @@ autoclass_content = 'both'
 
 modindex_common_prefix = ['dxlvtapiservice.']
 
+html_use_smartypants = False
