@@ -3,9 +3,6 @@ FROM python:2.7-slim
 
 VOLUME ["/opt/dxlvtapiservice-config"]
 
-# Install required packages
-RUN pip install "requests" "dxlbootstrap>=0.1.3" "dxlclient"
-
 # Copy service files
 COPY . /tmp/build
 WORKDIR /tmp/build
@@ -13,11 +10,8 @@ WORKDIR /tmp/build
 # Clean service
 RUN python ./clean.py
 
-# Build service
-RUN python ./setup.py bdist_wheel
-
-# Install service
-RUN pip install dist/*.whl
+# Install application package and its dependencies
+RUN pip install .
 
 # Cleanup build
 RUN rm -rf /tmp/build
