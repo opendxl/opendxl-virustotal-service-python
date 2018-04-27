@@ -1,9 +1,9 @@
+from __future__ import absolute_import
 import logging
 
 from dxlbootstrap.app import Application
 from dxlclient.service import ServiceRegistrationInfo
-from requesthandlers import *
-
+from .requesthandlers import *
 
 # Configure local logger
 logger = logging.getLogger(__name__)
@@ -48,7 +48,8 @@ class VirusTotalApiService(Application):
         :param config_dir: The location of the configuration files for the
             application
         """
-        super(VirusTotalApiService, self).__init__(config_dir, "dxlvtapiservice.config")
+        super(VirusTotalApiService, self).__init__(config_dir,
+                                                   "dxlvtapiservice.config")
         self._api_key = None
 
     @property
@@ -92,12 +93,14 @@ class VirusTotalApiService(Application):
 
         # API Key
         try:
-            self._api_key = config.get(self.GENERAL_CONFIG_SECTION, self.GENERAL_API_KEY_CONFIG_PROP)
+            self._api_key = config.get(self.GENERAL_CONFIG_SECTION,
+                                       self.GENERAL_API_KEY_CONFIG_PROP)
         except Exception:
             pass
         if not self._api_key:
-            raise Exception("VirusTotal API Key not found in configuration file: {0}"
-                            .format(self._app_config_path))
+            raise Exception(
+                "VirusTotal API Key not found in configuration file: {0}"
+                .format(self._app_config_path))
 
     def on_dxl_connect(self):
         """
@@ -111,40 +114,44 @@ class VirusTotalApiService(Application):
         Invoked when services should be registered with the application
         """
         # Register service 'vtapiservice'
-        logger.info("Registering service: {0}".format("vtapiservice"))
+        logger.info("Registering service: %s", "vtapiservice")
         service = ServiceRegistrationInfo(self._dxl_client, self.SERVICE_TYPE)
 
-        logger.info("Registering request callback: {0}".format("file_rescan"))
+        logger.info("Registering request callback: %s", "file_rescan")
         self.add_request_callback(
             service, self.REQ_TOPIC_FILE_RESCAN,
             VirusTotalApiRequestCallback(
-                self, False, [VirusTotalApiRequestCallback.PARAM_RESOURCE]), False)
+                self, False, [VirusTotalApiRequestCallback.PARAM_RESOURCE]),
+            False)
 
-        logger.info("Registering request callback: {0}".format("file_report"))
+        logger.info("Registering request callback: %s", "file_report")
         self.add_request_callback(
             service, self.REQ_TOPIC_FILE_REPORT,
             VirusTotalApiRequestCallback(
-                self, True, [VirusTotalApiRequestCallback.PARAM_RESOURCE]), False)
+                self, True, [VirusTotalApiRequestCallback.PARAM_RESOURCE]),
+            False)
 
-        logger.info("Registering request callback: {0}".format("url_scan"))
+        logger.info("Registering request callback: %s", "url_scan")
         self.add_request_callback(
             service, self.REQ_TOPIC_URL_SCAN,
             VirusTotalApiRequestCallback(
                 self, False, [VirusTotalApiRequestCallback.PARAM_URL]), False)
 
-        logger.info("Registering request callback: {0}".format("url_report"))
+        logger.info("Registering request callback: %s", "url_report")
         self.add_request_callback(
             service, self.REQ_TOPIC_URL_REPORT,
             VirusTotalApiRequestCallback(
-                self, False, [VirusTotalApiRequestCallback.PARAM_RESOURCE]), False)
+                self, False, [VirusTotalApiRequestCallback.PARAM_RESOURCE]),
+            False)
 
-        logger.info("Registering request callback: {0}".format("ipaddress_report"))
+        logger.info(
+            "Registering request callback: %s", "ipaddress_report")
         self.add_request_callback(
             service, self.REQ_TOPIC_IP_ADDRESS_REPORT,
             VirusTotalApiRequestCallback(
                 self, True, [VirusTotalApiRequestCallback.PARAM_IP]), False)
 
-        logger.info("Registering request callback: {0}".format("domain_report"))
+        logger.info("Registering request callback: %s", "domain_report")
         self.add_request_callback(
             service, self.REQ_TOPIC_DOMAIN_REPORT,
             VirusTotalApiRequestCallback(

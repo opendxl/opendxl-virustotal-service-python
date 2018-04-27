@@ -2,12 +2,14 @@
 #
 # See: https://www.virustotal.com/en/documentation/public-api/#rescanning-files
 
+from __future__ import absolute_import
+from __future__ import print_function
 import os
 import sys
 
 from dxlclient.client_config import DxlClientConfig
 from dxlclient.client import DxlClient
-from dxlclient.message import Message, Event, Request
+from dxlclient.message import Message, Request
 from dxlbootstrap.util import MessageUtils
 
 # Import common logging and configuration
@@ -38,7 +40,7 @@ with DxlClient(config) as client:
     if res.message_type != Message.MESSAGE_TYPE_ERROR:
         # Display results
         res_dict = MessageUtils.json_payload_to_dict(res)
-        print MessageUtils.dict_to_json(res_dict, pretty_print=True)
+        print(MessageUtils.dict_to_json(res_dict, pretty_print=True))
     else:
-        print "Error invoking service with topic '{0}': {1} ({2})".format(
-            request_topic, res.error_message, res.error_code)
+        print("Error invoking service with topic '{0}': {1} ({2})".format(
+            request_topic, res.error_message, res.error_code))

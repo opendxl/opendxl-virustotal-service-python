@@ -1,0 +1,5 @@
+MANIFEST
+dist/
+*.pyc
+build/
+dxlvtapiservice.egg-info/
