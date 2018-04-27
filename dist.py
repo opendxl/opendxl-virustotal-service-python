@@ -11,6 +11,9 @@ from tempfile import mkstemp
 from shutil import move
 
 
+# Run clean
+import clean #pylint: disable=unused-import
+
 def replace(file_path, pattern, subst):
     # Create temp file
     fh, abs_path = mkstemp()
@@ -23,9 +26,6 @@ def replace(file_path, pattern, subst):
     os.remove(file_path)
     # Move new file
     move(abs_path, file_path)
-
-# Run clean
-import clean #pylint: disable=unused-import
 
 print("Starting dist.\n")
 
