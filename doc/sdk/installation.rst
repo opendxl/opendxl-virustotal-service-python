@@ -13,6 +13,8 @@ Prerequisites
 * Python 2.7.9 or higher in the Python 2.x series or Python 3.4.0 or higher
   in the Python 3.x series installed within a Windows or Linux environment.
 
+..
+
 * A valid VirusTotal API Key (See `VirusTotal Getting started <https://www.virustotal.com/en/documentation/public-api/#getting-started>`_ for more information)
    The API key must be specified in the :ref:`Service Configuration File <dxl_service_config_file_label>`
 
