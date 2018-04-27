@@ -87,10 +87,10 @@ The majority of the sample code is shown below:
             if res.message_type != Message.MESSAGE_TYPE_ERROR:
                 # Display results
                 res_dict = MessageUtils.json_payload_to_dict(res)
-                print MessageUtils.dict_to_json(res_dict, pretty_print=True)
+                print(MessageUtils.dict_to_json(res_dict, pretty_print=True))
             else:
-                print "Error invoking service with topic '{0}': {1} ({2})".format(
-                    request_topic, res.error_message, res.error_code)
+                print("Error invoking service with topic '{0}': {1} ({2})".format(
+                    request_topic, res.error_message, res.error_code))
 
 
 After connecting to the DXL fabric, a `request message` is created with a topic that targets the "file report" method
