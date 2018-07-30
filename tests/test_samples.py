@@ -36,7 +36,7 @@ class TestSamples(BaseClientTest):
 
                 configure_vt_service(dxl_client, mock_server.mock_server_port)
 
-                mock_print = BaseClientTest.run_sample(sample_filename)
+                mock_print = self.run_sample(sample_filename)
 
                 mock_print.assert_any_call(
                     StringDoesNotContain("Error")
@@ -62,7 +62,7 @@ class TestSamples(BaseClientTest):
 
                 configure_vt_service(dxl_client, mock_server.mock_server_port)
 
-                mock_print = BaseClientTest.run_sample(sample_filename)
+                mock_print = self.run_sample(sample_filename)
 
                 mock_print.assert_any_call(
                     StringDoesNotContain("Error")
@@ -88,7 +88,7 @@ class TestSamples(BaseClientTest):
 
                 configure_vt_service(dxl_client, mock_server.mock_server_port)
 
-                mock_print = BaseClientTest.run_sample(sample_filename)
+                mock_print = self.run_sample(sample_filename)
 
                 mock_print.assert_any_call(
                     StringDoesNotContain("Error")
@@ -114,7 +114,7 @@ class TestSamples(BaseClientTest):
 
                 configure_vt_service(dxl_client, mock_server.mock_server_port)
 
-                mock_print = BaseClientTest.run_sample(sample_filename)
+                mock_print = self.run_sample(sample_filename)
 
                 mock_print.assert_any_call(
                     StringDoesNotContain("Error")
@@ -140,7 +140,7 @@ class TestSamples(BaseClientTest):
 
                 configure_vt_service(dxl_client, mock_server.mock_server_port)
 
-                mock_print = BaseClientTest.run_sample(sample_filename)
+                mock_print = self.run_sample(sample_filename)
 
                 mock_print.assert_any_call(
                     StringDoesNotContain("Error")
@@ -166,7 +166,7 @@ class TestSamples(BaseClientTest):
 
                 configure_vt_service(dxl_client, mock_server.mock_server_port)
 
-                mock_print = BaseClientTest.run_sample(sample_filename)
+                mock_print = self.run_sample(sample_filename)
 
                 mock_print.assert_any_call(
                     StringDoesNotContain("Error")
