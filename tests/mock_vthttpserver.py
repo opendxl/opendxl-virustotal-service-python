@@ -36,7 +36,7 @@ def get_free_port():
 
 class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
 
-    #pylint: disable=line-too-long
+    #pylint: disable=line-too-long, no-member
     BASE_PATTERN = "/vtapi/v2{0}"
 
     FILE_RESCAN_PATTERN = re.compile(
@@ -74,8 +74,7 @@ class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
 
 
     def do_GET(self):
-
-        response_code = requests.codes.ok #pylint: disable=no-member
+        response_code = requests.codes.ok
 
         parsed_url = urlparse.urlparse(self.path)
 
@@ -83,8 +82,6 @@ class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
             urlparse.parse_qs(parsed_url.query)[VirusTotalApiService.GENERAL_API_KEY_CONFIG_PROP.lower()][0]
 
         if parsed_api_key == SAMPLE_API_KEY:
-            #if re.search('')
-            #   response_content = self.rate_limit_exceeded(re)
             if re.search(self.DOMAIN_REPORT_PATTERN, self.path):
                 response_content = self.domain_report_cmd(parsed_url)
 
@@ -95,11 +92,11 @@ class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
                 response_content = self.ip_report_cmd(parsed_url)
 
             elif re.search(self.RATE_EXCEED_PATTERN, self.path):
-                response_code = requests.codes.no_content #pylint: disable=no-member
+                response_code = requests.codes.no_content
                 response_content = ""
 
             elif re.search(self.HTTP_ERROR_PATTERN, self.path):
-                response_code = requests.codes.internal_server_error #pylint: disable=no-member
+                response_code = requests.codes.internal_server_error
                 response_content = "500 - Internal Server Error"
 
             else:
@@ -121,7 +118,6 @@ class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
     def do_POST(self): #pylint: disable=invalid-name
         parsed_url = urlparse.urlparse(self.path)
 
-        # pylint: disable=line-too-long
         parsed_api_key = \
             urlparse.parse_qs(parsed_url.query)[VirusTotalApiService.GENERAL_API_KEY_CONFIG_PROP.lower()][0]
 
@@ -143,7 +139,7 @@ class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
                 parsed_api_key
             )
 
-        self.send_response(requests.codes.ok, response_content) #pylint: disable=no-member
+        self.send_response(requests.codes.ok, response_content)
 
         self.send_header('Content-Type', 'text/plain; charset=utf-8', )
         self.end_headers()
@@ -199,13 +195,6 @@ class MockVtServerRequestHandler(SimpleHTTPRequestHandler):
         return self.bad_param(VirusTotalApiRequestCallback.PARAM_URL, url)
 
 
-    # Needs to return ERROR 204 HEADER!
-    #@staticmethod
-    #def rate_limit_exceeded(cmd_string):
-    #    # Needs to return ERROR 204 HEADER!
-    #    return None
-
-
     @staticmethod
     def bad_param(param_name, param_val):
         return MessageUtils.dict_to_json(
@@ -233,6 +222,7 @@ class MockServerRunner(object):
         self.mock_server_port = 0
         self.mock_server = None
         self.mock_server_address = ""
+        self.mock_server_thread = None
 
     def __enter__(self):
         self.mock_server_address, self.mock_server_port = get_free_port()
@@ -240,19 +230,14 @@ class MockServerRunner(object):
             ('localhost', self.mock_server_port),
             MockVtServerRequestHandler
         )
-        #self.mock_server.socket = ssl.wrap_socket(
-        #    self.mock_server.socket,
-        #    certfile=MOCK_EPOHTTPSERVER_CERTNAME,
-        #    keyfile=MOCK_EPOHTTPSERVER_KEYNAME,
-        #    server_side=True
-        #)
 
-        mock_server_thread = Thread(target=self.mock_server.serve_forever)
-        mock_server_thread.setDaemon(True)
-        mock_server_thread.start()
+        self.mock_server_thread = Thread(target=self.mock_server.serve_forever)
+        self.mock_server_thread.setDaemon(True)
+        self.mock_server_thread.start()
 
         return self
 
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.mock_server.shutdown()
+        self.mock_server_thread.join()

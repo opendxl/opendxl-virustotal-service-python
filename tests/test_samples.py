@@ -68,7 +68,7 @@ class TestSamples(BaseClientTest):
                     StringDoesNotContain("Error")
                 )
 
-                # Validate whois_timestamp from report
+                # Validate md5 from report
                 mock_print.assert_any_call(
                     StringContains(
                         str(SAMPLE_FILE_REPORT["md5"])
@@ -94,7 +94,7 @@ class TestSamples(BaseClientTest):
                     StringDoesNotContain("Error")
                 )
 
-                # Validate whois_timestamp from report
+                # Validate scan_id from report
                 mock_print.assert_any_call(
                     StringContains(
                         str(SAMPLE_FILE_RESCAN["scan_id"])
@@ -120,7 +120,7 @@ class TestSamples(BaseClientTest):
                     StringDoesNotContain("Error")
                 )
 
-                # Validate whois_timestamp from report
+                # Validate asn from report
                 mock_print.assert_any_call(
                     StringContains(
                         str(SAMPLE_IP_ADDRESS_REPORT["asn"])
@@ -146,7 +146,7 @@ class TestSamples(BaseClientTest):
                     StringDoesNotContain("Error")
                 )
 
-                # Validate whois_timestamp from report
+                # Validate scan_id from report
                 mock_print.assert_any_call(
                     StringContains(
                         str(SAMPLE_URL_REPORT["scan_id"])
@@ -156,7 +156,7 @@ class TestSamples(BaseClientTest):
                 dxl_client.disconnect()
 
 
-    def test_corehelp_example(self):
+    def test_urlscan_example(self):
         # Modify sample file to include necessary sample data
         sample_filename = self.BASIC_FOLDER + "/basic_url_scan_example.py"
 
@@ -172,7 +172,7 @@ class TestSamples(BaseClientTest):
                     StringDoesNotContain("Error")
                 )
 
-                # Validate whois_timestamp from report
+                # Validate scan_id from report
                 mock_print.assert_any_call(
                     StringContains(
                         str(SAMPLE_URL_SCAN["scan_id"])

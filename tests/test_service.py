@@ -30,11 +30,6 @@ class TestConfiguration(BaseClientTest):
             config_file_name=VT_SERVICE_CONFIG_FILENAME,
         )
 
-        # ---remember patch for later---
-        # Patch USERS_URL so that the service uses the mock server URL instead of the real URL.
-        #   with patch.dict('project.services.__dict__', {'USERS_URL': mock_users_url}):
-        #   response = get_users()
-
         vt_service = VirusTotalApiService(TEST_FOLDER)
         vt_service._load_configuration()
 
