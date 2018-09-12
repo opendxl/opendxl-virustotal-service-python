@@ -241,3 +241,4 @@ class MockServerRunner(object):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.mock_server.shutdown()
         self.mock_server_thread.join()
+        self.mock_server.server_close()
