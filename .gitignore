@@ -3,3 +3,7 @@ dist/
 *.pyc
 build/
 dxlvtapiservice.egg-info/
+*.csr
+*.key
+*.crt
+tests/*.config
