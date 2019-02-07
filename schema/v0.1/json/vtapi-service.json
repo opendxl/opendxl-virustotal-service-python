@@ -3,7 +3,7 @@
   "info": {
     "title": "VirusTotal API DXL Service",
     "version": "0.1.0",
-    "description": "The OpenDXL VirusTotal service(s) exposes access to the VirusTotal API DXL.",
+    "description": "The OpenDXL VirusTotal service(s) exposes access to the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal API</a> via the <a href='http://www.mcafee.com/us/solutions/data-exchange-layer.aspx'>Data Exchange Layer</a> (DXL) fabric.",
     "contact": {
       "name": "OpenDXL",
       "url": "https://www.opendxl.com"
@@ -34,7 +34,7 @@
       "info": {
         "title": "VirusTotal API DXL Service",
         "version": "0.2.0",
-        "description": "The VirusTotal DXL service exposes access to the VirusTotal API via the Data Exchange Layer (DXL) fabric."
+        "description": "The VirusTotal DXL service exposes access to the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal API</a> via the <a href='http://www.mcafee.com/us/solutions/data-exchange-layer.aspx'>Data Exchange Layer</a> (DXL) fabric."
       },
       "externalDocs": {
         "description": "VirusTotal API DXL Python Service (GitHub)",
@@ -183,10 +183,41 @@
           }
         },
         "required": [
-          "resource"
+          "ip"
         ],
         "example": {
           "ip": "90.156.201.27"
+        }
+      },
+      "response": {
+        "description": "The contents of the DXL response payload will match exactly to the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal Public API Reference</a> for further details."
+      },
+      "errorResponses": {
+        "VirusTotal HTTP Error Response": {
+          "payload": {
+            "$ref": "#/definitions/VirusTotal HTTP Error Response Object"
+          }
+        }
+      }
+    },
+    "/opendxl-virustotal/service/vtapi/domain/report": {
+      "description": "Invokes a VirusTotal 'domain address report' command and returns the results.",
+      "externalDocs": {
+        "description": "VirusTotal Public API v2.0 Reference: 'Retrieving domain reports'",
+        "url": "https://www.virustotal.com/en/documentation/public-api/#getting-domain-reports"
+      },
+      "payload": {
+        "properties": {
+          "domain": {
+            "description": "A domain name.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "domain"
+        ],
+        "example": {
+          "domain": "027.ru"
         }
       },
       "response": {
