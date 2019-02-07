@@ -72,258 +72,218 @@ class TestConfiguration(BaseClientTest):
 class TestVtRequestCallback(BaseClientTest):
 
     def test_callback_domainreport(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+                VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + "/vtapi/v2{0}"
+            vt_service.run()
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + "/vtapi/v2{0}"
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            request_topic = VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_DOMAIN: SAMPLE_DOMAIN
+                }
+            )
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_DOMAIN: SAMPLE_DOMAIN
-                    }
-                )
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
+            res_dict = MessageUtils.json_payload_to_dict(res)
 
-                res = dxl_client.sync_request(req, timeout=30)
-                res_dict = MessageUtils.json_payload_to_dict(res)
-
-                self.assertDictEqual(
-                    SAMPLE_DOMAIN_REPORT,
-                    res_dict
-                )
+            self.assertDictEqual(
+                SAMPLE_DOMAIN_REPORT,
+                res_dict
+            )
 
 
     def test_callback_filereport(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+        with MockServerRunner() as server_runner, \
+                VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + "/vtapi/v2{0}"
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + "/vtapi/v2{0}"
+            vt_service.run()
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_FILE_REPORT
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_RESOURCE: SAMPLE_FILE
-                    }
-                )
+            request_topic = VirusTotalApiService.REQ_TOPIC_FILE_REPORT
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_RESOURCE: SAMPLE_FILE
+                }
+            )
 
-                res = dxl_client.sync_request(req, timeout=30)
-                res_dict = MessageUtils.json_payload_to_dict(res)
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
+            res_dict = MessageUtils.json_payload_to_dict(res)
 
-                self.assertDictEqual(
-                    SAMPLE_FILE_REPORT,
-                    res_dict
-                )
+            self.assertDictEqual(
+                SAMPLE_FILE_REPORT,
+                res_dict
+            )
 
 
     def test_callback_filerescan(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+            VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + "/vtapi/v2{0}"
+            vt_service.run()
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + "/vtapi/v2{0}"
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            request_topic = VirusTotalApiService.REQ_TOPIC_FILE_RESCAN
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_RESOURCE: SAMPLE_FILE
+                }
+            )
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_FILE_RESCAN
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_RESOURCE: SAMPLE_FILE
-                    }
-                )
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
+            res_dict = MessageUtils.json_payload_to_dict(res)
 
-                res = dxl_client.sync_request(req, timeout=30)
-                res_dict = MessageUtils.json_payload_to_dict(res)
-
-                self.assertDictEqual(
-                    SAMPLE_FILE_RESCAN,
-                    res_dict
-                )
+            self.assertDictEqual(
+                SAMPLE_FILE_RESCAN,
+                res_dict
+            )
 
 
     def test_callback_ipreport(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+            VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + "/vtapi/v2{0}"
+            vt_service.run()
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + "/vtapi/v2{0}"
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            request_topic = VirusTotalApiService.REQ_TOPIC_IP_ADDRESS_REPORT
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_IP: SAMPLE_IP
+                }
+            )
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_IP_ADDRESS_REPORT
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_IP: SAMPLE_IP
-                    }
-                )
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
+            res_dict = MessageUtils.json_payload_to_dict(res)
 
-                res = dxl_client.sync_request(req, timeout=30)
-                res_dict = MessageUtils.json_payload_to_dict(res)
-
-                self.assertDictEqual(
-                    SAMPLE_IP_ADDRESS_REPORT,
-                    res_dict
-                )
+            self.assertDictEqual(
+                SAMPLE_IP_ADDRESS_REPORT,
+                res_dict
+            )
 
 
     def test_callback_urlreport(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+            VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + "/vtapi/v2{0}"
+            vt_service.run()
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + "/vtapi/v2{0}"
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            request_topic = VirusTotalApiService.REQ_TOPIC_URL_REPORT
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_RESOURCE: SAMPLE_URL
+                }
+            )
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_URL_REPORT
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_RESOURCE: SAMPLE_URL
-                    }
-                )
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
+            res_dict = MessageUtils.json_payload_to_dict(res)
 
-                res = dxl_client.sync_request(req, timeout=30)
-                res_dict = MessageUtils.json_payload_to_dict(res)
-
-                self.assertDictEqual(
-                    SAMPLE_URL_REPORT,
-                    res_dict
-                )
+            self.assertDictEqual(
+                SAMPLE_URL_REPORT,
+                res_dict
+            )
 
 
     def test_callback_urlscan(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+            VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + "/vtapi/v2{0}"
+            vt_service.run()
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + "/vtapi/v2{0}"
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            request_topic = VirusTotalApiService.REQ_TOPIC_URL_SCAN
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_URL: SAMPLE_URL
+                }
+            )
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_URL_SCAN
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_URL: SAMPLE_URL
-                    }
-                )
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
+            res_dict = MessageUtils.json_payload_to_dict(res)
 
-                res = dxl_client.sync_request(req, timeout=30)
-                res_dict = MessageUtils.json_payload_to_dict(res)
-
-                self.assertDictEqual(
-                    SAMPLE_URL_SCAN,
-                    res_dict
-                )
+            self.assertDictEqual(
+                SAMPLE_URL_SCAN,
+                res_dict
+            )
 
 
     def test_error_exceedrate(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+            VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
-
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
                                               + str(server_runner.mock_server_port) \
                                               + RATE_EXCEED_SERVER_PATH
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            vt_service.run()
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_DOMAIN: SAMPLE_DOMAIN
-                    }
-                )
+            request_topic = VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_DOMAIN: SAMPLE_DOMAIN
+                }
+            )
 
 
-                res = dxl_client.sync_request(req, timeout=30)
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
 
-                self.assertEqual(res.message_type, Response.MESSAGE_TYPE_ERROR)
-                self.assertIn(
-                    "VirusTotal error, VirusTotal API request rate limit exceeded. (204)",
-                    res._error_message
-                )
+            self.assertEqual(res.message_type, Response.MESSAGE_TYPE_ERROR)
+            self.assertIn(
+                "VirusTotal error, VirusTotal API request rate limit exceeded. (204)",
+                res._error_message
+            )
 
 
     def test_error_httperror(self):
-        with BaseClientTest.create_client(max_retries=0) as dxl_client:
-            dxl_client.connect()
+        with MockServerRunner() as server_runner, \
+            VirusTotalApiService(TEST_FOLDER) as vt_service:
 
-            with MockServerRunner() as server_runner:
-                vt_service = VirusTotalApiService(TEST_FOLDER)
-                vt_service._dxl_client = dxl_client
+            vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
+                                          + str(server_runner.mock_server_port) \
+                                          + HTTP_ERROR_SERVER_PATH
+            vt_service.run()
 
-                vt_service.VTAPI_URL_FORMAT = "http://127.0.0.1:" \
-                                              + str(server_runner.mock_server_port) \
-                                              + HTTP_ERROR_SERVER_PATH
-                vt_service._load_configuration()
-                vt_service.on_register_services()
+            request_topic = VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT
+            req = Request(request_topic)
+            MessageUtils.dict_to_json_payload(
+                req,
+                {
+                    VirusTotalApiRequestCallback.PARAM_DOMAIN: SAMPLE_DOMAIN
+                }
+            )
 
-                request_topic = VirusTotalApiService.REQ_TOPIC_DOMAIN_REPORT
-                req = Request(request_topic)
-                MessageUtils.dict_to_json_payload(
-                    req,
-                    {
-                        VirusTotalApiRequestCallback.PARAM_DOMAIN: SAMPLE_DOMAIN
-                    }
-                )
+            res = vt_service._dxl_client.sync_request(req, timeout=30)
 
-
-                res = dxl_client.sync_request(req, timeout=30)
-
-                self.assertEqual(res.message_type, Response.MESSAGE_TYPE_ERROR)
-                self.assertIn(
-                    "500 Server Error: 500 - Internal Server Error for url: ",
-                    res._error_message
-                )
+            self.assertEqual(res.message_type, Response.MESSAGE_TYPE_ERROR)
+            self.assertIn(
+                "500 Server Error: 500 - Internal Server Error for url: ",
+                res._error_message
+            )
