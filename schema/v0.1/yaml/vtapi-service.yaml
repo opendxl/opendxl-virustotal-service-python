@@ -1,0 +1,167 @@
+---
+openDxlApi: '0.1'
+info:
+  title: VirusTotal API DXL Service
+  version: 0.1.0
+  description: The OpenDXL VirusTotal service(s) exposes access to the VirusTotal
+    API DXL.
+  contact:
+    name: OpenDXL
+    url: https://www.opendxl.com
+solutions:
+  VirusTotal API DXL Service:
+    info:
+      title: VirusTotal API DXL Service
+      version: 0.2.0
+      description: The VirusTotal API DXL Service.
+    externalDocs:
+      description: VirusTotal Public API Reference
+      url: https://www.virustotal.com/en/documentation/public-api/
+    services:
+    - "$ref": "#/services/VirusTotal API DXL Service"
+    events: []
+services:
+  VirusTotal API DXL Service:
+    info:
+      title: VirusTotal API DXL Service
+      version: 0.2.0
+      description: The VirusTotal DXL service exposes access to the VirusTotal API
+        via the Data Exchange Layer (DXL) fabric.
+    externalDocs:
+      description: VirusTotal API DXL Python Service (GitHub)
+      url: https://github.com/opendxl/opendxl-virustotal-service-python
+    requests:
+    - "$ref": "#/requests/~1opendxl-virustotal~1service~1vtapi~1file~1rescan"
+    - "$ref": "#/requests/~1opendxl-virustotal~1service~1vtapi~1file~1report"
+    - "$ref": "#/requests/~1opendxl-virustotal~1service~1vtapi~1url~1scan"
+    - "$ref": "#/requests/~1opendxl-virustotal~1service~1vtapi~1url~1report"
+    - "$ref": "#/requests/~1opendxl-virustotal~1service~1vtapi~1ip-address~1report"
+    - "$ref": "#/requests/~1opendxl-virustotal~1service~1vtapi~1domain~1report"
+events: {}
+requests:
+  "/opendxl-virustotal/service/vtapi/file/rescan":
+    description: Invokes a VirusTotal 'file rescan' command and returns the results.
+    externalDocs:
+      description: 'VirusTotal Public API v2.0 Reference: ''Rescanning already submitted
+        files'''
+      url: https://www.virustotal.com/en/documentation/public-api/#rescanning-files
+    payload:
+      properties:
+        resource:
+          description: Hash (md5/sha1/sha256). You can also specify a CSV list made
+            up of a combination of any of the three allowed hashes (up to 25 items).
+            Note that the file(s) must already be present in the VirusTotal file store.
+          type: string
+      example:
+        resource: 7657fcb7d772448a6d8504e4b20168b8
+    response:
+      description: The contents of the DXL response payload will match exactly to
+        the response provided by the VirusTotal API. Please see the <b>VirusTotal
+        Public API Reference</b> for further details.
+    errorResponses:
+      VirusTotal HTTP Error Response:
+        payload:
+          "$ref": "#/definitions/VirusTotal HTTP Error Response Object"
+  "/opendxl-virustotal/service/vtapi/file/report":
+    description: Invokes a VirusTotal 'file report' command and returns the results.
+    externalDocs:
+      description: 'VirusTotal Public API v2.0 Reference: ''Retrieving file scan reports'''
+      url: https://www.virustotal.com/en/documentation/public-api/#getting-file-scans
+    payload:
+      properties:
+        resource:
+          description: Hash (md5/sha1/sha256) of the file or SHA-256 hash ('scan_id')
+            of the specific existing report you wish to retrieve. You can also specify
+            a CSV list made up of a combination of any of the three allowed hashes
+            (up to 4 items). Note that the file(s) must already be present in the
+            VirusTotal file store.
+          type: string
+      required:
+      - resource
+      example:
+        resource: 54bc950d46a0d1aa72048a17c8275743209e6c17bdacfc4cb9601c9ce3ec9a71-1549331758
+    response:
+      description: The contents of the DXL response payload will match exactly to
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        Public API Reference</a> for further details.
+    errorResponses:
+      VirusTotal HTTP Error Response:
+        payload:
+          "$ref": "#/definitions/VirusTotal HTTP Error Response Object"
+  "/opendxl-virustotal/service/vtapi/url/scan":
+    description: Invokes a VirusTotal 'URL scan' command and returns the results.
+    externalDocs:
+      description: 'VirusTotal Public API v2.0 Reference: ''Sending and scanning URLs'''
+      url: https://www.virustotal.com/en/documentation/public-api/#scanning-urls
+    payload:
+      "$ref": "#/definitions/URL Object"
+      example:
+        url: http://www.virustotal.com
+    response:
+      description: The contents of the DXL response payload will match exactly to
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        Public API Reference</a> for further details.
+    errorResponses:
+      VirusTotal HTTP Error Response:
+        payload:
+          "$ref": "#/definitions/VirusTotal HTTP Error Response Object"
+  "/opendxl-virustotal/service/vtapi/url/report":
+    description: Invokes a VirusTotal 'URL report' command and returns the results.
+    externalDocs:
+      description: 'VirusTotal Public API v2.0 Reference: ''Retrieving URL scan reports'''
+      url: https://www.virustotal.com/en/documentation/public-api/#getting-url-scans
+    payload:
+      properties:
+        resource:
+          description: URL for which to retrieve the most recent report. You may also
+            specify a 'scan_id' (sha256-timestamp as returned by the URL submission
+            API) to access a specific report. At the same time, you can specify a
+            CSV list made up of a combination of hashes and 'scan_id's so as to perform
+            a batch request with one single call (up to 4 resources per call with
+            the standard request rate). When sending multiples, the 'scan_id's or
+            URLs must be separated by a new line character.
+          type: string
+      required:
+      - resource
+      example:
+        resource: http://www.virustotal.com
+    response:
+      description: The contents of the DXL response payload will match exactly to
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        Public API Reference</a> for further details.
+    errorResponses:
+      VirusTotal HTTP Error Response:
+        payload:
+          "$ref": "#/definitions/VirusTotal HTTP Error Response Object"
+  "/opendxl-virustotal/service/vtapi/ip-address/report":
+    description: Invokes a VirusTotal 'IP address report' command and returns the
+      results.
+    externalDocs:
+      description: 'VirusTotal Public API v2.0 Reference: ''Retrieving IP address
+        reports'''
+      url: https://www.virustotal.com/en/documentation/public-api/#getting-ip-reports
+    payload:
+      properties:
+        ip:
+          description: A valid IPv4 address in dotted quad notation, for the time
+            being only IPv4 addresses are supported.
+          type: string
+      required:
+      - resource
+      example:
+        ip: 90.156.201.27
+    response:
+      description: The contents of the DXL response payload will match exactly to
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        Public API Reference</a> for further details.
+    errorResponses:
+      VirusTotal HTTP Error Response:
+        payload:
+          "$ref": "#/definitions/VirusTotal HTTP Error Response Object"
+definitions:
+  VirusTotal HTTP Error Response Object:
+    properties:
+      errorMessage:
+        description: Message string containing HTTP error response information.
+        type: string
+    example: VirusTotal error, VirusTotal API request rate limit exceeded. (204)
