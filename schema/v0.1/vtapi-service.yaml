@@ -60,7 +60,7 @@ requests:
         resource: 7657fcb7d772448a6d8504e4b20168b8
     response:
       description: The contents of the DXL response payload will match exactly to
-        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/#rescanning-files'>VirusTotal
         Public API Reference</a> for further details.
       payload:
         example:
@@ -93,7 +93,7 @@ requests:
         resource: 54bc950d46a0d1aa72048a17c8275743209e6c17bdacfc4cb9601c9ce3ec9a71-1549331758
     response:
       description: The contents of the DXL response payload will match exactly to
-        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/#getting-file-scans'>VirusTotal
         Public API Reference</a> for further details.
       payload:
         example:
@@ -129,12 +129,18 @@ requests:
       description: 'VirusTotal Public API v2.0 Reference: ''Sending and scanning URLs'''
       url: https://www.virustotal.com/en/documentation/public-api/#scanning-urls
     payload:
-      "$ref": "#/definitions/URL Object"
+      properties:
+        url:
+          description: The URL that should be scanned. This parameter accepts a list
+            of URLs (up to 4 with the standard request rate) so as to perform a batch
+            scanning request with one single call. The URLs must be separated by a
+            new line character.
+          type: string
       example:
         url: http://www.virustotal.com
     response:
       description: The contents of the DXL response payload will match exactly to
-        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/#scanning-urls'>VirusTotal
         Public API Reference</a> for further details.
       payload:
         example:
@@ -171,7 +177,7 @@ requests:
         resource: http://www.virustotal.com
     response:
       description: The contents of the DXL response payload will match exactly to
-        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/#getting-url-scans'>VirusTotal
         Public API Reference</a> for further details.
       payload:
         example:
@@ -215,7 +221,7 @@ requests:
         ip: 90.156.201.27
     response:
       description: The contents of the DXL response payload will match exactly to
-        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/#getting-ip-reports'>VirusTotal
         Public API Reference</a> for further details.
       payload:
         example:
@@ -292,7 +298,7 @@ requests:
         domain: 027.ru
     response:
       description: The contents of the DXL response payload will match exactly to
-        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/'>VirusTotal
+        the response provided by the VirusTotal API. Please see the <a href='https://www.virustotal.com/en/documentation/public-api/#getting-domain-reports'>VirusTotal
         Public API Reference</a> for further details.
       payload:
         example:
