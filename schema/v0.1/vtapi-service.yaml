@@ -41,7 +41,6 @@ services:
         $ref: '#/requests/~1opendxl-virustotal~1service~1vtapi~1ip-address~1report'
       -
         $ref: '#/requests/~1opendxl-virustotal~1service~1vtapi~1domain~1report'
-events:
 requests:
   /opendxl-virustotal/service/vtapi/file/rescan:
     description: 'Invokes a VirusTotal ''file rescan'' command and returns the results.'
