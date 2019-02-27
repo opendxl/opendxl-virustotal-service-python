@@ -106,10 +106,9 @@ class VirusTotalApiRequestCallback(RequestCallback):
                     raise Exception(
                         "VirusTotal error, {0} ({1})".format(http_message,
                                                              str(status_code)))
-                else:
-                    raise Exception(
-                        "VirusTotal error, HTTP response code: {0}".format(
-                            status_code))
+                raise Exception(
+                    "VirusTotal error, HTTP response code: {0}".format(
+                        status_code))
 
             # Create response
             res = Response(request)
